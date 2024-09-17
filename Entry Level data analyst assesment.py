@@ -71,7 +71,7 @@ df['Hour'] = pd.to_numeric(df['Hour'], errors='coerce')
 # Drop rows with NaN values in the 'Hour' column
 df.dropna(subset=['Hour'], inplace=True)
 
-# Calculate the amount of electricity that needed to be bought from the electricity provider for each hour in 2020
+# Calculate the amount of electricity that needed to be bought from the electricity provider for each hour in 2023
 df['Net Electricity Consumption (kWh)'] = df['Electricity usage (kWh)'] - df['Solar Electricity Generation (kWh)']
 df['Net Electricity Consumption (kWh)'] = df['Net Electricity Consumption (kWh)'].apply(lambda x: max(x, 0))
 total_electricity_bought = df.groupby('Hour')['Net Electricity Consumption (kWh)'].sum()
@@ -79,7 +79,7 @@ total_electricity_bought = df.groupby('Hour')['Net Electricity Consumption (kWh)
 # Display the total electricity bought for each hour
 print(total_electricity_bought)
 
-# Step 2(iii): Calculate the excess solar electricity generated over electricity used for each hour in 2020
+# Step 2(iii): Calculate the excess solar electricity generated over electricity used for each hour in 2023
 
 # Calculate excess solar electricity generated over electricity used for each hour
 df['Excess Solar Electricity (kWh)'] = df['Solar Electricity Generation (kWh)'] - df['Electricity usage (kWh)']
@@ -92,7 +92,7 @@ total_excess_solar_electricity = df.groupby('Hour')['Excess Solar Electricity (k
 
 # Display the total excess solar electricity generated for each hour
 print(total_excess_solar_electricity)
-# Step 2(iv): Model the cumulative battery charge level for each hour over 2020, assuming a battery had already been installed
+# Step 2(iv): Model the cumulative battery charge level for each hour over 2023, assuming a battery had already been installed
 
 # Define battery capacity (in kWh) and initialize cumulative charge level
 battery_capacity = 12.5  # kWh
@@ -133,7 +133,7 @@ df['Electricity Bought from Provider (kWh)'] = df['Net Electricity Consumption A
 
 # Display the DataFrame with the calculated values
 print(df[['Hour', 'Electricity Bought from Provider (kWh)']])
-# Step 2(vi): Calculate the savings over 2020 (in dollars) from installing a battery compared to using the existing solar panels alone
+# Step 2(vi): Calculate the savings over 2023 (in dollars) from installing a battery compared to using the existing solar panels alone
 
 # Calculate the total electricity costs without the battery
 total_costs_without_battery = df['Electricity Bought from Provider (kWh)'].sum() * 0.17
